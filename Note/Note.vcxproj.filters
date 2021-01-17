@@ -21,12 +21,18 @@
     <ClCompile Include="MenuForm.cpp">
       <Filter>Файлы ресурсов</Filter>
     </ClCompile>
+    <ClCompile Include="ShowForm.cpp">
+      <Filter>Файлы ресурсов</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="NoteForm.h">
       <Filter>Файлы ресурсов</Filter>
     </ClInclude>
     <ClInclude Include="MenuForm.h">
+      <Filter>Файлы ресурсов</Filter>
+    </ClInclude>
+    <ClInclude Include="ShowForm.h">
       <Filter>Файлы ресурсов</Filter>
     </ClInclude>
   </ItemGroup>

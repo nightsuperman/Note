@@ -1,6 +1,7 @@
 #pragma once
 #include "NoteForm.h"
 #include "MenuForm.h"
+#include "ShowForm.h"
 
 
 namespace Note {
@@ -49,7 +50,7 @@ namespace Note {
 		/// <summary>
 		/// Обязательная переменная конструктора.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+		System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -93,6 +94,7 @@ namespace Note {
 			this->button2->TabIndex = 2;
 			this->button2->Text = L"Посмотреть заметки";
 			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &MenuForm::button2_Click);
 			// 
 			// button3
 			// 
@@ -119,11 +121,17 @@ namespace Note {
 
 		}
 #pragma endregion
+
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 		//this->Hide();
 		NoteForm^ Note;
 		Note = gcnew NoteForm();
 		Note->Show();
+	}
+	public: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+		ShowForm^ ShowNote;
+		ShowNote = gcnew ShowForm();
+		ShowNote->Show();
 	}
 };
 }

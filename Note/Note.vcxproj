@@ -120,12 +120,16 @@
   <ItemGroup>
     <ClCompile Include="MenuForm.cpp" />
     <ClCompile Include="NoteForm.cpp" />
+    <ClCompile Include="ShowForm.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MenuForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="NoteForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="ShowForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
   </ItemGroup>
@@ -135,6 +139,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="NoteForm.resx">
       <DependentUpon>NoteForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShowForm.resx">
+      <DependentUpon>ShowForm.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

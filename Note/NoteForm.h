@@ -1,4 +1,5 @@
 #pragma once
+#include "ShowForm.h"
 
 namespace Note {
 
@@ -104,21 +105,21 @@ namespace Note {
 			// ñîõðàíèòüToolStripMenuItem
 			// 
 			this->ñîõðàíèòüToolStripMenuItem->Name = L"ñîõðàíèòüToolStripMenuItem";
-			this->ñîõðàíèòüToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			this->ñîõðàíèòüToolStripMenuItem->Size = System::Drawing::Size(155, 22);
 			this->ñîõðàíèòüToolStripMenuItem->Text = L"Ñîõðàíèòü";
 			this->ñîõðàíèòüToolStripMenuItem->Click += gcnew System::EventHandler(this, &NoteForm::ñîõðàíèòüToolStripMenuItem_Click);
 			// 
 			// ñîõðàíèòüÊàêToolStripMenuItem
 			// 
 			this->ñîõðàíèòüÊàêToolStripMenuItem->Name = L"ñîõðàíèòüÊàêToolStripMenuItem";
-			this->ñîõðàíèòüÊàêToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			this->ñîõðàíèòüÊàêToolStripMenuItem->Size = System::Drawing::Size(155, 22);
 			this->ñîõðàíèòüÊàêToolStripMenuItem->Text = L"Ñîõðàíèòü Êàê";
 			this->ñîõðàíèòüÊàêToolStripMenuItem->Click += gcnew System::EventHandler(this, &NoteForm::ñîõðàíèòüÊàêToolStripMenuItem_Click);
 			// 
 			// îòêðûòüToolStripMenuItem
 			// 
 			this->îòêðûòüToolStripMenuItem->Name = L"îòêðûòüToolStripMenuItem";
-			this->îòêðûòüToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			this->îòêðûòüToolStripMenuItem->Size = System::Drawing::Size(155, 22);
 			this->îòêðûòüToolStripMenuItem->Text = L"Îòêðûòü";
 			this->îòêðûòüToolStripMenuItem->Click += gcnew System::EventHandler(this, &NoteForm::îòêðûòüToolStripMenuItem_Click);
 			// 
@@ -127,6 +128,7 @@ namespace Note {
 			this->ïîñìîòðåòüÇàìåòêèToolStripMenuItem->Name = L"ïîñìîòðåòüÇàìåòêèToolStripMenuItem";
 			this->ïîñìîòðåòüÇàìåòêèToolStripMenuItem->Size = System::Drawing::Size(133, 20);
 			this->ïîñìîòðåòüÇàìåòêèToolStripMenuItem->Text = L"Ïîñìîòðåòü çàìåòêè";
+			this->ïîñìîòðåòüÇàìåòêèToolStripMenuItem->Click += gcnew System::EventHandler(this, &NoteForm::ïîñìîòðåòüÇàìåòêèToolStripMenuItem_Click);
 			// 
 			// textBox1
 			// 
@@ -213,21 +215,29 @@ private: System::Void îòêðûòüToolStripMenuItem_Click(System::Object^ sender, Sys
 	else
 		return;
 }
-	private: System::Void ñîõðàíèòüToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+	private: System::Void ñîõðàíèòüToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) { // it doesn`t work correct
 		try {
-			String^ filename = Path::GetFileName(openFileDialog1->FileName); // ïðåäàåì èìÿ ôàéëà
-			if (File::Exists(filename)) { // ïðîâåðêà íà ñóùåñòâîâàíèÿ
-				StreamWriter^ sw = gcnew StreamWriter(openFileDialog1->FileName, false); // êîíñòðóêöèÿ ïåðåçàïèñè
-				sw->Write(textBox1->Text);
-				sw->Close();
-				MessageBox::Show("Ôàéë óñïåøíî ïåðåçàïèñàí");
+			String^ filename;
+			if(filename = openFileDialog1->FileName){
+				//if (File::Exists(filename)) { // check for existance
+					StreamWriter^ sw = gcnew StreamWriter(filename, false); // construction rewrite
+					sw->Write(textBox1->Text);
+					sw->Close();
+					MessageBox::Show("Ôàéë óñïåøíî ïåðåçàïèñàí");
+				}
+			//}
+			else if (0){
+				ñîõðàíèòüÊàêToolStripMenuItem->PerformClick(); // button save AS
 			}
-			else
-				ñîõðàíèòüÊàêToolStripMenuItem->PerformClick(); // èíà÷å óêàçàòåëü íà êíîïêó ñ äèàëîãîâîì îêíîì
 		}
 	catch (Exception^ E) {
 		MessageBox::Show(this, "no", "mistake", MessageBoxButtons::OK, MessageBoxIcon::Exclamation);
 	}
+}
+private: System::Void ïîñìîòðåòüÇàìåòêèToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+	ShowForm^ ShowNote;
+	ShowNote = gcnew ShowForm();
+	ShowNote->Show();
 }
 };
 }
