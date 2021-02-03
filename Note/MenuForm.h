@@ -1,8 +1,6 @@
 #pragma once
 #include "NoteForm.h"
-#include "MenuForm.h"
 #include "ShowForm.h"
-
 
 namespace Note {
 
@@ -19,7 +17,7 @@ namespace Note {
 	public ref class MenuForm : public System::Windows::Forms::Form
 	{
 	public:
-		MenuForm(void)
+		MenuForm()
 		{
 			InitializeComponent();
 			//
@@ -122,16 +120,14 @@ namespace Note {
 		}
 #pragma endregion
 
-	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+	public: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e){
 		//this->Hide();
-		NoteForm^ Note;
-		Note = gcnew NoteForm();
-		Note->Show();
+		NoteForm^ noteForm = gcnew NoteForm();
+		noteForm->Show();
 	}
-	public: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
-		ShowForm^ ShowNote;
-		ShowNote = gcnew ShowForm();
-		ShowNote->Show();
+	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+		ShowForm^ showForm = gcnew ShowForm();
+		showForm->Show();
 	}
 };
 }

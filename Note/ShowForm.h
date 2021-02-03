@@ -1,7 +1,5 @@
 #pragma once
 #include <Windows.h>
-//#include "NoteForm.h"
-
 namespace Note {
 
 	using namespace System;
@@ -12,13 +10,15 @@ namespace Note {
 	using namespace System::Drawing;
 	using namespace System::IO;
 
+
 	/// <summary>
 	/// —‚Ó‰Í‡ ‰Îˇ ShowForm
 	/// </summary>
 	public ref class ShowForm : public System::Windows::Forms::Form
 	{
+
 	public:
-		ShowForm(void)
+		ShowForm()
 		{
 			InitializeComponent();
 			//
@@ -41,7 +41,9 @@ namespace Note {
 	private: System::Windows::Forms::MenuStrip^ menuStrip1;
 	private: System::Windows::Forms::ToolStripMenuItem^ Û‰‡ÎËÚ¸«‡ÏÂÚÍÛToolStripMenuItem;
 	private: System::Windows::Forms::OpenFileDialog^ openFileDialog1;
+	
 	private: System::Windows::Forms::ListBox^ listBox1;
+
 
 
 
@@ -81,6 +83,7 @@ namespace Note {
 			this->Û‰‡ÎËÚ¸«‡ÏÂÚÍÛToolStripMenuItem->Name = L"Û‰‡ÎËÚ¸«‡ÏÂÚÍÛToolStripMenuItem";
 			this->Û‰‡ÎËÚ¸«‡ÏÂÚÍÛToolStripMenuItem->Size = System::Drawing::Size(109, 20);
 			this->Û‰‡ÎËÚ¸«‡ÏÂÚÍÛToolStripMenuItem->Text = L"”‰‡ÎËÚ¸ Á‡ÏÂÚÍÛ";
+			this->Û‰‡ÎËÚ¸«‡ÏÂÚÍÛToolStripMenuItem->Click += gcnew System::EventHandler(this, &ShowForm::Û‰‡ÎËÚ¸«‡ÏÂÚÍÛToolStripMenuItem_Click);
 			// 
 			// openFileDialog1
 			// 
@@ -93,7 +96,7 @@ namespace Note {
 			this->listBox1->Name = L"listBox1";
 			this->listBox1->Size = System::Drawing::Size(473, 368);
 			this->listBox1->TabIndex = 2;
-			this->listBox1->DoubleClick += gcnew System::EventHandler(this, &ShowForm::listBox1_DoubleClick);
+			this->listBox1->DoubleClick += gcnew System::EventHandler(this, &ShowForm::listBox1_DoubleClick_1);
 			// 
 			// ShowForm
 			// 
@@ -114,21 +117,25 @@ namespace Note {
 
 
 #pragma endregion
-	public:
+	private:
 		String^ path = Path::GetFullPath("D:\\ITProjects\\Note001");
 		array<String^>^ files = Directory::GetFiles(path, "*.txt");
 
-private: System::Void ShowForm_Load(System::Object^ sender, System::EventArgs^ e) {
-	listBox1->Items->Clear();
+
+	private: System::Void ShowForm_Load(System::Object^ sender, System::EventArgs^ e) {
+		listBox1->Items->Clear();
+		for (int i = 0; i < files->Length; i++) {
+			listBox1->Items->Add(Path::GetFileName(files[i]));
+		}
+	}
+private: System::Void listBox1_DoubleClick_1(System::Object^ sender, System::EventArgs^ e);
+
+private: System::Void Û‰‡ÎËÚ¸«‡ÏÂÚÍÛToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 	for (int i = 0; i < files->Length; i++) {
-		listBox1->Items->Add(Path::GetFileName(files[i]));
+		listBox1->Items->RemoveAt(i);
 	}
 }
 
-private: System::Void listBox1_DoubleClick(System::Object^ sender, System::EventArgs^ e){
-	for (int i = 0; i < files->Length; i++) {
-		listBox1->Items[i];
-	}
-}
+
 };
 }

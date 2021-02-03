@@ -16,8 +16,10 @@ namespace Note {
 	/// </summary>
 	public ref class NoteForm : public System::Windows::Forms::Form
 	{
+
 	public:
-		NoteForm(void)
+
+		NoteForm()
 		{
 			InitializeComponent();
 			//
@@ -42,7 +44,9 @@ namespace Note {
 	private: System::Windows::Forms::ToolStripMenuItem^ ñîõðàíèòüToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ ñîõðàíèòüÊàêToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ îòêðûòüToolStripMenuItem;
-	private: System::Windows::Forms::TextBox^ textBox1;
+	
+	public: System::Windows::Forms::TextBox^ textBox1;
+	
 	private: System::Windows::Forms::ToolStripMenuItem^ ïîñìîòðåòüÇàìåòêèToolStripMenuItem;
 
 	private: System::Windows::Forms::TableLayoutPanel^ tableLayoutPanel1;
@@ -189,7 +193,9 @@ namespace Note {
 			this->PerformLayout();
 
 		}
+
 #pragma endregion
+
 private: System::Void NoteForm_Load(System::Object^ sender, System::EventArgs^ e) {
 	openFileDialog1->Filter = "Òåêñòîâûå ôàéëû (*.txt)|*.txt|All Files (*.*)|*.*";
 	saveFileDialog1->Filter = "Òåêñòîâûå ôàéëû (*.txt)|*.txt|All Files (*.*)|*.*";
@@ -211,7 +217,7 @@ private: System::Void ñîõðàíèòüÊàêToolStripMenuItem_Click(System::Object^ sender
 }
 private: System::Void îòêðûòüToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 	if (openFileDialog1->ShowDialog() == Windows::Forms::DialogResult::OK)
-		textBox1->Text = System::IO::File::ReadAllText(openFileDialog1->FileName);	
+		textBox1->Text = File::ReadAllText(openFileDialog1->FileName);	
 	else
 		return;
 }
@@ -235,9 +241,8 @@ private: System::Void îòêðûòüToolStripMenuItem_Click(System::Object^ sender, Sys
 	}
 }
 private: System::Void ïîñìîòðåòüÇàìåòêèToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
-	ShowForm^ ShowNote;
-	ShowNote = gcnew ShowForm();
-	ShowNote->Show();
+	ShowForm^ showForm = gcnew ShowForm();
+	showForm->Show();
 }
 };
 }

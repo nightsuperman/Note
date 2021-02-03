@@ -1,6 +1,6 @@
-#include "MenuForm.h"
 #include <Windows.h>
 #include <string>
+#include "MenuForm.h"
 
 using namespace Note; // Название проекта
 int WINAPI WinNote(HINSTANCE, HINSTANCE, LPSTR, int) {
