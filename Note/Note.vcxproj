@@ -118,11 +118,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ItemObj.cpp" />
     <ClCompile Include="MenuForm.cpp" />
     <ClCompile Include="NoteForm.cpp" />
     <ClCompile Include="ShowForm.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ItemObj.h" />
     <ClInclude Include="MenuForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>

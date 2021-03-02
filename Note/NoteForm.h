@@ -1,6 +1,6 @@
 #pragma once
 #include "ShowForm.h"
-
+#include"ItemObj.h"
 namespace Note {
 
 	using namespace System;
@@ -11,6 +11,7 @@ namespace Note {
 	using namespace System::Drawing;
 	using namespace IO;
 
+
 	/// <summary>
 	/// Сводка для NoteForm
 	/// </summary>
@@ -18,15 +19,12 @@ namespace Note {
 	{
 
 	public:
-
+		
 		NoteForm()
 		{
 			InitializeComponent();
-			//
-			//TODO: добавьте код конструктора
-			//
 		}
-
+		
 	protected:
 		/// <summary>
 		/// Освободить все используемые ресурсы.
@@ -195,13 +193,16 @@ namespace Note {
 		}
 
 #pragma endregion
+		
+private:
+	String^ s = "";
 
 private: System::Void NoteForm_Load(System::Object^ sender, System::EventArgs^ e) {
 	openFileDialog1->Filter = "Текстовые файлы (*.txt)|*.txt|All Files (*.*)|*.*";
 	saveFileDialog1->Filter = "Текстовые файлы (*.txt)|*.txt|All Files (*.*)|*.*";
 }
 private: System::Void textBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
-	String^ s = textBox1->Text->Length.ToString();
+	s = textBox1->Text->Length.ToString();
 	label1->Text = s;
 }
 
@@ -222,18 +223,20 @@ private: System::Void открытьToolStripMenuItem_Click(System::Object^ sender, Sys
 		return;
 }
 	private: System::Void сохранитьToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) { // it doesn`t work correct
-		try {
-			String^ filename;
-			if(filename = openFileDialog1->FileName){
-				//if (File::Exists(filename)) { // check for existance
-					StreamWriter^ sw = gcnew StreamWriter(filename, false); // construction rewrite
-					sw->Write(textBox1->Text);
-					sw->Close();
+		ShowForm^ shForm = gcnew ShowForm();
+		try {		
+			for (int i = 0; i < shForm->listBox1->SelectedItems->Count; i++) { // cycle for finding correct files. It isn`t correct.
+				
+				ItemObj^ item = (ItemObj^)shForm->listBox1->SelectedItems[i];
+
+				if (File::Exists(item->FullName)) { // check for existance
+					File::WriteAllText(item->FullName, textBox1->Text);
 					MessageBox::Show("Файл успешно перезаписан");
 				}
-			//}
-			else if (0){
-				сохранитьКакToolStripMenuItem->PerformClick(); // button save AS
+				//else {
+				//	сохранитьКакToolStripMenuItem->PerformClick(); // button save AS
+				//	//File::WriteAllText(saveFileDialog1->FileName, textBox1->Text);
+				//}
 			}
 		}
 	catch (Exception^ E) {

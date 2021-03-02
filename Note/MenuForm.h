@@ -39,7 +39,7 @@ namespace Note {
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::Button^ button1;
 	private: System::Windows::Forms::Button^ button2;
-	private: System::Windows::Forms::Button^ button3;
+
 	protected:
 
 	protected:
@@ -60,7 +60,6 @@ namespace Note {
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->button2 = (gcnew System::Windows::Forms::Button());
-			this->button3 = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// label1
@@ -94,21 +93,11 @@ namespace Note {
 			this->button2->UseVisualStyleBackColor = true;
 			this->button2->Click += gcnew System::EventHandler(this, &MenuForm::button2_Click);
 			// 
-			// button3
-			// 
-			this->button3->Location = System::Drawing::Point(18, 183);
-			this->button3->Name = L"button3";
-			this->button3->Size = System::Drawing::Size(101, 46);
-			this->button3->TabIndex = 3;
-			this->button3->Text = L"Удаленные заметки";
-			this->button3->UseVisualStyleBackColor = true;
-			// 
 			// MenuForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(147, 258);
-			this->Controls->Add(this->button3);
+			this->ClientSize = System::Drawing::Size(147, 181);
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->label1);
@@ -126,7 +115,8 @@ namespace Note {
 		noteForm->Show();
 	}
 	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
-		ShowForm^ showForm = gcnew ShowForm();
+		ShowForm^ showForm;
+		showForm = gcnew ShowForm();
 		showForm->Show();
 	}
 };

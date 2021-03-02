@@ -15,10 +15,8 @@ namespace Note {
 	System::Void ShowForm::listBox1_DoubleClick_1(System::Object^ sender, System::EventArgs^ e) {
 		NoteForm^ noteForm = gcnew NoteForm();
 		noteForm->Show();
-		
-		for (int i = 0; i < listBox1->Items->Count; i++) { // it works incorect
+		for (int i = 0; i < listBox1->SelectedIndex + 1; i++) {
 			noteForm->textBox1->Text = File::ReadAllText(files[i]);
 		}
-
 	}
 }
